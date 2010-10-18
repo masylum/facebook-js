@@ -1,0 +1,10 @@
+{
+  "name": "facebook-js",
+  "description": "easy peasy facebook client",
+  "version": "0.0.1",
+  "author": "Pau Ramon <masylum@gmail.com>",
+  "keywords": ["facebook"],
+  "dependencies": { "oauth": ">= 0.8.2" },
+  "repository" : {"type": "git" , "url": "http://github.com/masylum/facebook-js.git" },
+  "engines": { "node": ">= 0.2.0" }
+}
