@@ -1,1 +1,1 @@
-module.exports.facebookClient = require("./lib/facebook_client");
+module.exports = require("./lib/facebook_client");

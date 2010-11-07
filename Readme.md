@@ -14,7 +14,7 @@ facebook-js has two methods.
 ## Example using express.js
 
     app.get('/facebook/me', function (req, res) {
-      var facebookClient = require('facebook-js').facebookClient('consumerKey', 'consumerSecret');
+      var facebookClient = require('facebook-js')('consumerKey', 'consumerSecret');
 
       facebookClient.getAccessToken({
           redirect_uri: 'http://localhost:3000/facebook/auth',
