@@ -15,9 +15,11 @@ facebook-js has three methods.
 ## Example using express.js
 
     var express = require('express'),
-        connect = require('connect');
-
-    var twitterClient = require('./../')('yourKey', 'yourPass', 'http://twitter-js.com:3003/'),
+        connect = require('connect'),
+        facebookClient = require('./../')(
+          'appID',
+          'appSecret'
+        ),
         app = express.createServer(
           connect.bodyDecoder(),
           connect.cookieDecoder(),
