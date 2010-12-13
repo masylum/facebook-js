@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 var express = require('express'),
     connect = require('connect'),
     facebookClient = require('./../')(
@@ -19,13 +15,13 @@ app.set('views', __dirname);
 app.get('/', function (req, res) {
   res.redirect(facebookClient.getAuthorizeUrl({
     client_id: 'appID',
-    redirect_uri: 'http://localhost:3003/auth',
+    redirect_uri: 'http://yourhost.com:3003/auth',
     scope: 'offline_access,publish_stream'
   }));
 });
 
 app.get('/auth', function (req, res) {
-  facebookClient.getAccessToken({redirect_uri: 'http://localhost:3003/auth', code: req.param('code')}, function (error, token) {
+  facebookClient.getAccessToken({redirect_uri: 'http://yourhost.com:3003/auth', code: req.param('code')}, function (error, token) {
     res.render('client.jade', {
       layout: false,
       locals: {

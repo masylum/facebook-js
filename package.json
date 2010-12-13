@@ -1,7 +1,7 @@
 {
   "name": "facebook-js",
   "description": "easy peasy facebook client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Pau Ramon <masylum@gmail.com>",
   "keywords": ["facebook"],
   "main" : "lib/facebook_client.js",

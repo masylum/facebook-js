@@ -29,13 +29,13 @@ facebook-js has three methods.
     app.get('/', function (req, res) {
       res.redirect(facebookClient.getAuthorizeUrl({
         client_id: 'appID',
-        redirect_uri: 'http://localhost:3003/auth',
+        redirect_uri: 'http://yourhost.com:3003/auth',
         scope: 'offline_access,publish_stream'
       }));
     });
 
     app.get('/auth', function (req, res) {
-      facebookClient.getAccessToken({redirect_uri: 'http://localhost:3003/auth', code: req.param('code')}, function (error, token) {
+      facebookClient.getAccessToken({redirect_uri: 'http://yourhost.com:3003/auth', code: req.param('code')}, function (error, token) {
         res.render('client.jade', {locals: {token: token}});
       });
     });
@@ -55,8 +55,10 @@ facebook-js has three methods.
 
 To test and see this module working:
 
-  * clone this repo and open the test folder
-  * create a facebook app with the url pointing to http://localhost:3003/
-  * set up the keys and password of your facebook app at client.js file
-  * run it! _node test/client.js_
-  * Open your browser at localhost:3003
+  * Install the module: `npm install facebook-js`
+  * Clone this repo and open the test folder
+  * Add a host to your hosts file `127.0.0.1 yourhost.com`
+  * Create a facebook app with the url pointing to http://yourhost.com:3003/
+  * Set up the appID and the appSecret of your facebook app on the client.js file
+  * Run it! _node test/client.js_
+  * Open your browser at yourhost.com:3003
