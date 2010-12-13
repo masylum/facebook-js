@@ -1,6 +1,6 @@
 var express = require('express'),
     connect = require('connect'),
-    facebookClient = require('./../')(
+    facebookClient = require('facebook-js')(
       'appID',
       'appSecret'
     ),
