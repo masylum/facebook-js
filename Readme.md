@@ -8,9 +8,9 @@ Easy peasy facebook client for connect.
 
 facebook-js has three methods.
 
-  * getAuthorizeUrl(_client_id_, _redirect_uri_, _options_) Gets the url to facebook.
-  * getAccesToken(_params_, _callback_): Uses oAuth module to retrieve the access_token
-  * apiCall(_http_method_, _path_, _params_, _callback_): Does a call to facebook graph API.
+  * `getAuthorizeUrl(_client_id_, _redirect_uri_, _options_)` Gets the url to facebook.
+  * `getAccesToken(_params_, _callback_)`: Uses oAuth module to retrieve the access_token
+  * `apiCall(_http_method_, _path_, _params_, _callback_)`: Does a call to facebook graph API.
 
 ## Example using express.js
 
@@ -58,7 +58,7 @@ To test and see this module working:
   * Install the module: `npm install facebook-js`
   * Clone this repo and open the test folder
   * Add a host to your hosts file `127.0.0.1 yourhost.com`
-  * Create a facebook app with the url pointing to http://yourhost.com:3003/
+  * Create a facebook app with the url pointing to `http://yourhost.com:3003/`
   * Set up the appID and the appSecret of your facebook app on the client.js file
-  * Run it! _node test/client.js_
-  * Open your browser at yourhost.com:3003
+  * Run it! `node test/client.js`
+  * Open your browser at `yourhost.com:3003`
