@@ -8,7 +8,7 @@
   "directories" : { "lib" : "./lib" },
   "dependencies": {
     "oauth": ">= 0.8.2",
-    "request": "1.9.6"
+    "request": "1.9.5"
   },
   "devDependencies": {
     "testosterone": "1.2.0"
