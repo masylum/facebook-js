@@ -1,64 +1,60 @@
 # facebook-js
 
-Easy peasy facebook client for connect.
+Minimalistic facebook API client
 
-    npm install facebook-js
+``` bash
+npm install facebook-js
+```
 
 ## Usage
 
-facebook-js has three methods.
+facebook-js has just three methods.
 
-  * `getAuthorizeUrl(_client_id_, _redirect_uri_, _options_)` Gets the url to facebook.
-  * `getAccesToken(_params_, _callback_)`: Uses oAuth module to retrieve the access_token
-  * `apiCall(_http_method_, _path_, _params_, _callback_)`: Does a call to facebook graph API.
+  * `getAuthorizeUrl(options)`: Returns the authorize url.
+  * `getAccessToken(key, secret, code, redirect_uri, callback[error, access_token, refresh_token])`: Uses oAuth module to callback the access_token.
+  * `apiCall(http_method, path, params, callback[error, response, body])`: Does a call to facebook graph API and callbacks when its done.
 
 ## Example using express.js
 
-    var express = require('express'),
-        connect = require('connect'),
-        facebookClient = require('./../')(
-          'appID',
-          'appSecret'
-        ),
-        app = express.createServer(
-          connect.bodyDecoder(),
-          connect.cookieDecoder(),
-          connect.session()
-        );
+``` javascript
+var express = require('express')
+  , fb = require('facebook-js')
+  , app = express.createServer(
+      express.bodyDecoder()
+    , express.cookieDecoder()
+    , express.session()
+    );
 
-    app.get('/', function (req, res) {
-      res.redirect(facebookClient.getAuthorizeUrl({
-        client_id: 'appID',
-        redirect_uri: 'http://yourhost.com:3003/auth',
-        scope: 'offline_access,publish_stream'
-      }));
-    });
+app.get('/', function (req, res) {
+  res.redirect(fb.getAuthorizeUrl({
+    client_id: 'appID',
+    redirect_uri: 'http://yourhost.com:3003/auth',
+    scope: 'offline_access,publish_stream'
+  }));
+});
 
-    app.get('/auth', function (req, res) {
-      facebookClient.getAccessToken({redirect_uri: 'http://yourhost.com:3003/auth', code: req.param('code')}, function (error, token) {
-        res.render('client.jade', {locals: {token: token}});
-      });
-    });
+app.get('/auth', function (req, res) {
+  fb.getAccessToken('appID', 'appSecret', req.param('code'), 'http://yourhost.com:3003/auth'}, function (error, access_token, refresh_token) {
+    res.render('client', {access_token: access_token, refresh_token: refresh_token});
+  });
+});
 
-    app.post('/message', function (req, res) {
-      facebookClient.apiCall('POST', '/me/feed',
-        {access_token: req.param('access_token'), message: req.param('message')},
-        function (error, result) {
-          res.render('done.jade');
-        }
-      );
-    });
+app.post('/message', function (req, res) {
+  fb.apiCall('POST', '/me/feed',
+    {access_token: req.param('access_token'), message: req.param('message')},
+    function (error, response, body) {
+      res.render('done', {body: body});
+    }
+  );
+});
 
-    app.listen(3003);
+app.listen(3000);
+```
 
 ## Test
 
 To test and see this module working:
 
-  * Install the module: `npm install facebook-js`
-  * Clone this repo and open the test folder
-  * Add a host to your hosts file `127.0.0.1 yourhost.com`
-  * Create a facebook app with the url pointing to `http://yourhost.com:3003/`
-  * Set up the appID and the appSecret of your facebook app on the client.js file
-  * Run it! `node test/client.js`
-  * Open your browser at `yourhost.com:3003`
+``` bash
+make
+```
