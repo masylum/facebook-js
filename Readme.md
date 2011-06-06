@@ -48,6 +48,11 @@ app.post('/message', function (req, res) {
   );
 });
 
+app.get('/messages', function (req, res) {
+  var stream = fb.apiCall('GET', '/me/feed', {access_token: req.param('access_token'), message: req.param('message')});
+  stream.pipe(fs.createWriteStream('backup_feed.txt'));
+});
+
 app.listen(3000);
 ```
 
