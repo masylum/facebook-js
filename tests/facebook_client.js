@@ -21,7 +21,7 @@ testosterone
     done();
   })
 
-  .add('`apiCall` ok', function (done) {
+  .add('`apiCall` error', function (done) {
     facebook_client.apiCall(
       'GET'
     , '/search'
@@ -32,20 +32,21 @@ testosterone
       }
     , function (error, response, body) {
         assert.equal(error, null);
-        assert.equal(response.statusCode, 200);
-        assert.equal(body.data[0].name, 'Museum of Contemporary Native Arts');
+        assert.equal(response.statusCode, 400);
         done();
       }
     );
   })
 
-  .add('`apiCall` error', function (done) {
+  .add('`apiCall` ok', function (done) {
     facebook_client.apiCall(
-      'FOO'
-    , '/inexistant_url'
+      'GET'
+    , '/2439131959'
     , {}
     , function (error, response, body) {
-        assert.ok(error);
+        assert.equal(error, null);
+        assert.equal(response.statusCode, 200);
+        assert.equal(body.name, 'Graffiti');
         done();
       }
     );
