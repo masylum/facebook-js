@@ -20,9 +20,9 @@ facebook-js has just three methods.
 var express = require('express')
   , fb = require('facebook-js')
   , app = express.createServer(
-      express.bodyDecoder()
-    , express.cookieDecoder()
-    , express.session()
+      express.bodyParser()
+    , express.cookieParser()
+    , express.session({ secret: 'some secret' })
     );
 
 app.get('/', function (req, res) {
