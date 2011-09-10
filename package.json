@@ -1,7 +1,7 @@
 {
   "name": "facebook-js",
   "description": "Minimalistic facebook API client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Pau Ramon <masylum@gmail.com>",
   "keywords": ["facebook"],
   "main" : "lib/facebook_client.js",
